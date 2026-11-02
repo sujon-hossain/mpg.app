@@ -5,30 +5,58 @@ import numpy as np
 import joblib
 import matplotlib.pyplot as plt
 from sklearn.ensemble import RandomForestRegressor
+import streamlit as st
+import pandas as pd
+import numpy as np
+import joblib
 
-st.set_page_config(page_title="AutoMax | Multi-Model MPG Predictor", layout="wide", page_icon="🏎️")
+# --- PAGE CONFIGURATION & ENTERPRISE CAR STORE CSS ---
+st.set_page_config(page_title="AutoMax | Enterprise MPG Predictor", layout="wide", page_icon="🏎️")
 
 st.markdown("""
     <style>
+    /* Premium High-Res Dark Automotive Showroom Background */
     .stApp {
-        background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)), 
-                    url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1920&q=80');
+        background: linear-gradient(rgba(5, 7, 12, 0.82), rgba(5, 7, 12, 0.90)), 
+                    url('https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=2000&q=80');
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
     }
+    
+    /* Modern Glassmorphism Cards */
     div[data-testid="stVerticalBlock"] > div {
-        background-color: rgba(20, 24, 33, 0.80);
-        border-radius: 12px;
-        padding: 18px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(8px);
+        background: rgba(16, 22, 34, 0.70) !important;
+        border-radius: 16px !important;
+        padding: 22px !important;
+        border: 1px solid rgba(255, 255, 255, 0.12) !important;
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37) !important;
+        backdrop-filter: blur(12px) !important;
+        -webkit-backdrop-filter: blur(12px) !important;
     }
-    h1, h2, h3, h4, p, span, label {
+
+    /* Vibrant Typography Styling */
+    h1, h2, h3, h4 {
         color: #ffffff !important;
+        font-weight: 700 !important;
+        letter-spacing: -0.5px;
     }
+
+    p, span, label {
+        color: #e2e8f0 !important;
+    }
+
+    /* Metric Widget Styling */
+    div[data-testid="stMetricValue"] {
+        color: #00f2fe !important;
+        font-size: 32px !important;
+        font-weight: bold !important;
+    }
+
+    /* Custom Sidebar Dark Theme */
     section[data-testid="stSidebar"] {
-        background-color: rgba(10, 14, 23, 0.90) !important;
+        background-color: rgba(7, 10, 18, 0.92) !important;
+        border-right: 1px solid rgba(255, 255, 255, 0.08);
     }
     </style>
 """, unsafe_allow_html=True)
